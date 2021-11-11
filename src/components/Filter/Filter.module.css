@@ -1,0 +1,12 @@
+.label {
+  margin-right: 15px;
+  padding-bottom: 5px;
+}
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.filterInput {
+  width: 250px;
+}

@@ -1,0 +1,12 @@
+.contactItem {
+  display: flex;
+  /* padding: 10px; */
+}
+
+.contactName,
+.contactNumber {
+  padding-right: 15px;
+}
+.contactName {
+  font-weight: 700;
+}
