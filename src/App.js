@@ -11,7 +11,28 @@ export default class App extends Component {
     contacts: [],
     filter: '',
   };
+  componentDidMount() {
+    console.log('componentDidMount');
+    const contactsFromLs = localStorage.getItem('contactsData');
+    const parsedContactsFromLs = JSON.parse(contactsFromLs);
+    console.log(parsedContactsFromLs);
+    //проверять есть ли что -то  в LS
+    if (parsedContactsFromLs) {
+      this.setState({ contacts: parsedContactsFromLs });
+    }
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(' componentDidUpdate');
+    console.log(prevState);
+    console.log(this.state);
+
+    //// проверка, перед тем как записать
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('component  updated');
+      localStorage.setItem('contactsData', JSON.stringify(this.state.contacts));
+    }
+  }
   filterHandler = e => {
     this.setState({
       filter: e.target.value,
