@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ContactForm } from './components/ContactForm/ContactForm';
 import { ContactList } from './components/ContactList/ContactList';
 import { Filter } from './components/Filter/Filter';
+import { saveToLS, getFromLS } from './components/helpers/helpers';
 import s from './App.module.css';
 
 export default class App extends Component {
@@ -12,9 +13,7 @@ export default class App extends Component {
     filter: '',
   };
   componentDidMount() {
-    console.log('componentDidMount');
-    const contactsFromLs = localStorage.getItem('contactsData');
-    const parsedContactsFromLs = JSON.parse(contactsFromLs);
+    const parsedContactsFromLs = getFromLS('contactsData');
     console.log(parsedContactsFromLs);
     //проверять есть ли что -то  в LS
     if (parsedContactsFromLs) {
@@ -30,7 +29,7 @@ export default class App extends Component {
     //// проверка, перед тем как записать
     if (this.state.contacts !== prevState.contacts) {
       console.log('component  updated');
-      localStorage.setItem('contactsData', JSON.stringify(this.state.contacts));
+      saveToLS('contactsData', this.state.contacts);
     }
   }
   filterHandler = e => {
